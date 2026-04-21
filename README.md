@@ -49,14 +49,14 @@ graph LR
     end
 
     subgraph S3 ["III. FILTER WEAK INTERACTON"]
-        B1 & B2 & B3 --> D["<b>Transcriptome-TargetScan Alignment</b><br/>(CWCS++ Score Filter < -0.20)"]:::stage3
+        B1 & B2 & B3 --> D["<b>Transcriptome-TargetScan Alignment</b><br/>(CWCS++ Score Filter < -X.XX)"]:::stage3
     end
 
     subgraph S4 ["IV. THERMODYNAMIC VALIDATION"]
         direction TB
-        D --> E1["<b>Global Hybridization</b><br/>RNAhybrid </br>(MFE ≤ -20)<br/>"]:::stage4
+        D --> E1["<b>Global Hybridization</b><br/>RNAhybrid </br>(MFE ≤ -XX)<br/>"]:::stage4
         D --> E2["<b>Co-Folding Stability</b><br/>RNAcofold </br>(Minimum Energy Opt)<br/>"]:::stage4
-        D --> E3["<b>Local Accessibility</b><br/>RNAplfold </br>(Probability Thresholds ~0.6)<br/>"]:::stage4
+        D --> E3["<b>Local Accessibility</b><br/>RNAplfold </br>(Probability Thresholds ~X.XXX)<br/>"]:::stage4
     end
 
     subgraph S5 ["V. REGULATORY NETWORK DISCOVERY"]
