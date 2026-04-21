@@ -133,6 +133,24 @@ This framework solves the **"Target Specificity Problem"** in miRNA analysis by 
 
 ---
 
+
+
+---
+
+## 📅 Research Development Timeline
+
+| Milestone | Phase | Period | Intensity |
+|:---|:---|:---:|:---:|
+| **Project Genesis** | Initial Scaffolding | `1 DECENMBER 2025` | ![High](https://img.shields.io/badge/Intensity-Baseline-gray) |
+| **Architectural Sprint** | Core Logic Development | `[20 JANUARY 2026]` - `[13 MARCH 2026]` | ![Maximum](https://img.shields.io/badge/Intensity-WAR_MODE-red) |
+| **Methodology Audit** | Final Clinical Validation | `[18TH APRIL 2026]` | ![Complete](https://img.shields.io/badge/Status-VERIFIED-brightgreen) |
+
+> [!NOTE]
+> This repository represents a compressed-timeline "Research Sprint," achieving full-stack radiogenomic integration within a high-velocity development window.
+
+---
+
+
 ## 📜 Intellectual Property & Legal Notice
 
 - **Research Status:** Manuscript in Communication / Proprietary Clinical Methodology.
