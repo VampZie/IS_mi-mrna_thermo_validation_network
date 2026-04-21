@@ -122,8 +122,15 @@ This pipeline was developed as part of a doctoral dissertation on multi-omics ch
 
 > *Thermodynamic stability, seed duplex formation, and structural accessibility filtering reveal progressive regulatory entropy loss in ischemic stroke miRNA–mRNA networks.*
 
+
 ---
 
-## License
+## 📜 Intellectual Property & Legal Notice
 
-MIT License — see [LICENSE](LICENSE) for details.
+- **Research Status:** Manuscript in Communication / Proprietary Clinical Methodology.
+- **OWNER** **Vidit Zainith ([@VampZie](https://github.com/VampZie))** served as the **Principal Computational Architect and Bug-Resolution Lead** for the implementation and optimization of these multi-omics modules.
+- **Portfolio Disclaimer:** This repository is curated exclusively for **Professional Portfolio Demonstration**. The methodologies, skeleton-logics, and algorithmic architectures represent prioritized research assets of the owner **Vidit Zainith ([@VampZie](https://github.com/VampZie))** .
+- **Legal Enforcement:** Unauthorized replication, commercial redistribution, or derivative utilization of the proprietary logic structures contained herein without explicit written authorization is strictly prohibited. Any infringement of Intellectual Property Rights (IPR) will be addressed through formal legal channels in accordance with international copyright and academic integrity laws.
+- **Temporal Attribution (Prior Art):** This repository was published and archived on this platform as of **April 21, 2026**. This timestamp serves as public, immutable evidence of methodological authorship and prior art for all internal architectures displayed.
+
+---
