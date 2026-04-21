@@ -28,30 +28,45 @@ This repository contains the **computational engineering skeleton** developed fo
 ## 📁 Pipeline Architecture (Mermaid)
 
 ```mermaid
-graph TD
-    subgraph Phase1["Phase 1: Data Acquisition"]
-        A1[Raw SRA Data] --> A2[Quality Trim: fastp/cutadapt]
-        A2 --> A3[Alignment: STAR/Bowtie]
-        A3 --> A4[Quantification: featureCounts/miRDeep2]
-        A4 --> A5[Count Matrices]
+graph LR
+    %% --- CONFERENCE-GRADE STYLE DEFINITIONS ---
+    classDef stage1 fill:#1F1F1F,stroke:#000,stroke-width:3px,color:#fff
+    classDef stage2 fill:#613CBC,stroke:#000,stroke-width:2px,color:#fff
+    classDef stage3 fill:#007ACC,stroke:#000,stroke-width:2px,color:#fff
+    classDef stage4 fill:#D65D0E,stroke:#000,stroke-width:3px,color:#fff
+    classDef stage5 fill:#15803D,stroke:#000,stroke-width:3px,color:#fff
+
+    %% --- WORKFLOW NODES ---
+    subgraph S1 ["I. PREVIOUS ANALYSIS"]
+        A["<b>Differential Expression Results</b><br/>(Cross-Species Human & Rat)"]:::stage1
     end
 
-    subgraph Phase2["Phase 2: Differential Expression"]
-        A5 --> B1[Multi-Engine DE: edgeR/DESeq2/limma]
-        B1 --> B2[Quantitative Filtering]
-        B2 --> B3[UP/DOWN Gene Lists]
+    subgraph S2 ["II. TRANSCRIPTOMIC CURATION"]
+        direction TB
+        A --> B1["<b>Genomic Retrieval</b><br/>(Sequence Extraction)"]:::stage2
+        A --> B2["<b>ID Standardization</b><br/>(Identifier Normalization)"]:::stage2
+        A --> B3["<b>Seed Backbone</b><br/>(TargetScan Architecture)"]:::stage2
     end
 
-    subgraph Phase3["Phase 3: Thermodynamic Network"]
-        B3 --> C1[Sequence Retrieval & Harmonization]
-        C1 --> C2[4-Tool Thermodynamic Engine]
-        C2 --> C3[TargetScan/RNAhybrid/RNAplfold/RNAcofold]
-        C3 --> C4[Intersection Validation Task]
-        C4 --> C5[igraph Network Construction]
-        C5 --> C6[Dynamics: Hubs/Rewiring/Entropy]
+    subgraph S3 ["III. FILTER WEAK INTERACTON"]
+        B1 & B2 & B3 --> D["<b>Transcriptome-TargetScan Alignment</b><br/>(CWCS++ Score Filter < -0.20)"]:::stage3
     end
 
-    C6 --> D1[Functional Enrichment: GO/KEGG/Reactome]
+    subgraph S4 ["IV. THERMODYNAMIC VALIDATION"]
+        direction TB
+        D --> E1["<b>Global Hybridization</b><br/>RNAhybrid </br>(MFE ≤ -20)<br/>"]:::stage4
+        D --> E2["<b>Co-Folding Stability</b><br/>RNAcofold </br>(Minimum Energy Opt)<br/>"]:::stage4
+        D --> E3["<b>Local Accessibility</b><br/>RNAplfold </br>(Probability Thresholds ~0.6)<br/>"]:::stage4
+    end
+
+    subgraph S5 ["V. REGULATORY NETWORK DISCOVERY"]
+        E1 & E2 & E3 --> F["<b>Logic Gate Consensus</b><br/>(Three-Tier Validation)"]:::stage5
+        F --> G[("<b>High-Confidence Regulatory<br/>Networks (Validated Interactions)</b>")]:::stage5
+    end
+
+    %% --- LAYOUT HINTS ---
+    linkStyle default stroke:#333,stroke-width:2.5px
+
 ```
 
 ---
