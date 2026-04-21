@@ -5,7 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Research_Skeleton-orange?style=for-the-badge&logo=googlescholar" alt="Research Status" />
   <img src="https://img.shields.io/badge/Focus-Ischemic_Stroke-blue?style=for-the-badge&logo=brain" alt="Focus Area" />
-  <img src="https://img.shields.io/badge/Workflow-4--Tool_Thermodynamics-brightgreen?style=for-the-badge&logo=databricks" alt="Workflow" />
+  <img src="https://img.shields.io/badge/Workflow-3--Tool_Thermodynamics-brightgreen?style=for-the-badge&logo=databricks" alt="Workflow" />
 </p>
 
 ---
