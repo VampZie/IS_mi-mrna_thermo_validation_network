@@ -38,23 +38,23 @@ Specifically:
 │  Human miRNA  → edgeR (glmLRT)           4 contrasts                   │
 │  Rat miRNA    → limma (eBayes)            4 contrasts                   │
 │  Human mRNA   → DESeq2                   4 contrasts                   │
-│  Rat mRNA     → limma + illuminaRatv1.db 4 contrasts                   │
+│  Rat mRNA     → limma                    4 contrasts                   │
 │                                                                         │
-│  Output per contrast: UP / DOWN gene lists (logFC > 1, FDR < 0.05)     │
+│  Output per contrast: UP / DOWN gene lists (logFC and FDR filtered)     │
 └───────────────────────────────────┬─────────────────────────────────────┘
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  PHASE 3 — Thermodynamic Validation + Network Dynamics                  │
 │                                                                         │
-│  Step 0: ENSG → Gene Symbol extraction (AWK + GENCODE/Ensembl GTF)     │
+│  Step 0: ENSG → Gene Symbol extraction (AWK + GTF)                     │
 │  Step 1: Harmonization (protein-coding filter + DE cross-reference)     │
 │                                                                         │
 │  Step 2: 4-Tool Thermodynamic Engine                                    │
-│    TargetScan ──► conserved seed matches (7mer-m8 / 8mer)              │
-│    RNAhybrid  ──► MFE of full duplex      (threshold: ≤ -20 kcal/mol)  │
-│    RNAplfold  ──► 3'UTR local accessibility (W=80, u=8, L=40)          │
-│    RNAcofold  ──► co-fold ΔG in site context (±10 nt flanking)        │
+│    TargetScan ──► conserved seed matches                               │
+│    RNAhybrid  ──► MFE of full duplex      (threshold: ≤ [THRESHOLD_MFE])  │
+│    RNAplfold  ──► 3'UTR local accessibility                            │
+│    RNAcofold  ──► co-fold ΔG in site context                           │
 │         │                                                               │
 │         └──► INTERSECTION → validated edge list (only 4/4 passing)    │
 │                                                                         │
@@ -83,7 +83,7 @@ This is quantified by comparing mean MFE distributions:
 - **Stroke state**: narrower distribution shifted toward lower MFE (strong binders only)
 
 ### 3.2 The "Regulatory Flip" Phenomenon
-Certain miRNAs switch from **weak binders** (MFE > −25) in Moderate to **strong binders** (MFE < −30) in Stroke. These represent miRNAs whose functional context is radically altered by the ischemic environment — likely due to changes in mRNA 3'UTR accessibility caused by alternative polyadenylation under hypoxic stress.
+Certain miRNAs switch from **weak binders** (MFE > [THRESHOLD_WEAK]) in Moderate to **strong binders** (MFE < [THRESHOLD_STRONG]) in Stroke. These represent miRNAs whose functional context is radically altered by the ischemic environment — likely due to changes in mRNA 3'UTR accessibility caused by alternative polyadenylation under hypoxic stress.
 
 ### 3.3 Cross-Species Conservation as Mechanistic Validation
 Hub miRNAs and thermodynamic shifts conserved between human and rat models have passed an independent species-level replication test — providing mechanistic evidence beyond statistical significance.

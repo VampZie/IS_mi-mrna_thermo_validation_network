@@ -18,10 +18,10 @@ Phase 2 DE Outputs
        │
        ▼
 02_target_prediction/      4-Tool Thermodynamic Intersection
-  ├── TargetScan           Conserved seed-match prediction (7mer-m8, 8mer)
-  ├── RNAhybrid            MFE of miRNA:3'UTR (threshold: ≤ −20 kcal/mol)
-  ├── RNAplfold            Local 3'UTR accessibility (W=80, u=8, L=40)
-  └── RNAcofold            Co-folding ΔG (miRNA + binding site context ±10nt)
+  ├── TargetScan           Conserved seed-match prediction (position 2-8)
+  ├── RNAhybrid            MFE of miRNA:3'UTR (threshold: ≤ [THRESHOLD_MFE])
+  ├── RNAplfold            Local 3'UTR accessibility (optimized parameters)
+  └── RNAcofold            Co-folding ΔG (miRNA + context ±10nt)
        │
        ▼  (Only interactions passing ALL 4 tools)
 03_network_dynamics/       Per-state igraph network construction + analysis
@@ -38,9 +38,9 @@ Phase 2 DE Outputs
 
 | Tool | What it measures | Threshold |
 |------|-----------------|-----------|
-| TargetScan | Watson-Crick seed complementarity | 7mer-m8 or 8mer site type |
-| RNAhybrid | Minimum Free Energy of full duplex | MFE ≤ −20 kcal/mol |
-| RNAplfold | Local unpaired probability of binding site | Window 8-nt; seed-region accessible |
+| TargetScan | Watson-Crick seed complementarity | Canonical site types |
+| RNAhybrid | Minimum Free Energy of full duplex | MFE ≤ [THRESHOLD_MFE] |
+| RNAplfold | Local unpaired probability of binding site | Optimized window |
 | RNAcofold | Co-folding ΔG in flanking context | ΔG < 0 (favorable) |
 
 > **4-tool intersection**: Only interactions validated by ALL four tools enter the network.

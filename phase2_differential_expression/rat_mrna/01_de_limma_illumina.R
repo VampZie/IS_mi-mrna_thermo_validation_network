@@ -20,8 +20,8 @@
 #     Uses illuminaRatv1.db::mapIds() to convert Illumina probe IDs to
 #     HGNC/RGD gene symbols. Best-probe selection: highest |logFC| per gene.
 #
-#   THRESHOLDS: P.Value < 0.05  AND  |logFC| ≥ 1  (RAW, not FDR-adjusted)
-#   Rationale: Microarray data with n=3/group; FDR is over-conservative.
+#   THRESHOLDS: P.Value < [THRESHOLD_PVAL]  AND  |logFC| ≥ [THRESHOLD_LOGFC]  (RAW, not FDR-adjusted)
+#   Rationale: Microarray data with n=[GROUP_SIZE]/group; FDR is over-conservative.
 #
 # INPUT : GSE46267_non_normalized.txt, sample_info.csv
 # OUTPUT: de_{contrast}_UP.csv, de_{contrast}_DOWN.csv
@@ -53,8 +53,8 @@ cat("[SKELETON] Illumina BeadChip data loading omitted.\n")
 # -----------------------------------------------------------------------------
 # STEP 2: Detection filter
 # -----------------------------------------------------------------------------
-# SKELETON: keep <- rowSums(det_p < 0.05) >= 2
-# Retains probes detectable (p_detection < 0.05) in at least 2 samples.
+# SKELETON: keep <- rowSums(det_p < [THRESHOLD_DET_P]) >= [THRESHOLD_MIN_SAMPLES]
+# Retains probes detectable (p_detection < [THRESHOLD_DET_P]) in at least [THRESHOLD_MIN_SAMPLES] samples.
 # Prevents analysis of noise-level probes.
 
 cat("[SKELETON] Detection filter omitted.\n")

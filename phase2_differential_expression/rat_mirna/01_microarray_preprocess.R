@@ -9,7 +9,7 @@
 #   normalized expression matrix for downstream limma DE analysis.
 #
 #   PROCESSING PIPELINE:
-#     Raw signal extraction → Prevalence filtering (≥80% samples)
+#     Raw signal extraction → Prevalence filtering (≥[THRESHOLD_PREVALENCE]% samples)
 #     → Log2 transform → Zero-variance removal → Quantile normalization
 #
 #   QC PLOTS:
@@ -67,7 +67,7 @@ expr_matrix <- matrix()  # SKELETON placeholder
 # -----------------------------------------------------------------------------
 # STEP 4: Prevalence filter (≥80% samples must express)
 # -----------------------------------------------------------------------------
-# SKELETON: keep <- rowSums(!is.na(expr_matrix)) >= 0.8 * ncol(expr_matrix)
+# SKELETON: keep <- rowSums(!is.na(expr_matrix)) >= [THRESHOLD_PREVALENCE] * ncol(expr_matrix)
 
 # -----------------------------------------------------------------------------
 # STEP 5: Log2 transform + hard cleanup

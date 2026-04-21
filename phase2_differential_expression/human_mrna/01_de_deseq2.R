@@ -21,8 +21,8 @@
 #     Stroke_vs_Control    → clinical stroke composite
 #
 #   OUTPUTS (dual threshold):
-#     RAW   : p < 0.05  AND  |log2FC| > 1   (permissive, for target intersection)
-#     FDR   : padj < 0.05 AND  |log2FC| > 1  (stringent, for validation)
+#     RAW   : p < [THRESHOLD_PVAL]  AND  |log2FC| > [THRESHOLD_LOG2FC]   (permissive, for target intersection)
+#     FDR   : padj < [THRESHOLD_FDR] AND  |log2FC| > [THRESHOLD_LOG2FC]  (stringent, for validation)
 #
 #   ANNOTATION: Gene symbols mapped from GENCODE v49 GTF via gene_id lookup
 #
@@ -64,7 +64,7 @@ cat("Groups:", paste(levels(coldata$group), collapse = " → "), "\n\n")
 # SKELETON:
 # dds  <- DESeqDataSetFromMatrix(countData = counts, colData = coldata,
 #                                design = ~ group)
-# keep <- rowSums(counts(dds)) >= 10   → low-count gene filter
+# keep <- rowSums(counts(dds)) >= [THRESHOLD_MIN_COUNTS]   → low-count gene filter
 # dds  <- DESeq(dds[keep, ])
 
 cat("[SKELETON] DESeq2 3-group model fitting omitted.\n")
@@ -97,10 +97,10 @@ cat("[SKELETON] GTF gene_name annotation merge omitted.\n\n")
 analyze_contrast <- function(res, contrast_name) {
   # SKELETON:
   # res_df   <- as.data.frame(res) + gene_id + gene_name merge
-  # sig_raw  <- subset where pvalue < 0.05 & |log2FC| > 1
-  # sig_fdr  <- subset where padj  < 0.05 & |log2FC| > 1
-  # up_raw   <- subset where log2FC > 1
-  # down_raw <- subset where log2FC < -1
+  # sig_raw  <- subset where pvalue < [THRESHOLD_PVAL] & |log2FC| > [THRESHOLD_LOG2FC]
+  # sig_fdr  <- subset where padj  < [THRESHOLD_FDR] & |log2FC| > [THRESHOLD_LOG2FC]
+  # up_raw   <- subset where log2FC > [THRESHOLD_LOG2FC]
+  # down_raw <- subset where log2FC < -[THRESHOLD_LOG2FC]
   # write.csv() for _all, _sig_FDR, _sig_RAW, _up_RAW, _down_RAW variants
   message(paste("[SKELETON] Contrast:", contrast_name))
 }

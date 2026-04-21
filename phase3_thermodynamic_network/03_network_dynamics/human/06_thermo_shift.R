@@ -9,14 +9,14 @@
 #   distinguishing thermodynamic "rigidification" from regulatory loss.
 #
 #   "REGULATORY FLIP" DETECTION:
-#     Identifies miRNAs that switch from weak binders (MFE > -25) in Moderate
-#     to strong binders (MFE < -30) in Stroke — or vice versa.
+#     Identifies miRNAs that switch from weak binders (MFE > [THRESHOLD_WEAK]) in Moderate
+#     to strong binders (MFE < [THRESHOLD_STRONG]) in Stroke — or vice versa.
 #     These represent high-priority therapeutic candidates.
 #
 #   METRICS:
 #     ΔΔG = mean_MFE(Stroke) - mean_MFE(Moderate)   per miRNA
 #     z-score standardisation across all miRNAs
-#     Permutation-based significance test (n = 1000 permutations)
+#     Permutation-based significance test (n = [REDACTED_PERMUTATIONS])
 #
 # INPUT : network_results/human/{state}_edges.csv
 # OUTPUT: thermo_shift/ → thermo_shift_heatmap.png + regulatory_flips.csv
@@ -73,7 +73,7 @@ cat("[SKELETON] Thermodynamic shift heatmap omitted.\n")
 # -----------------------------------------------------------------------------
 # SKELETON:
 # flips <- delta_dG %>%
-#   filter(abs(z_score) > 2) %>%          # outlier thermodynamic shift
+#   filter(abs(z_score) > [THRESHOLD_ZSCORE]) %>%          # outlier thermodynamic shift
 #   arrange(delta_Moderate_Stroke)
 # write.csv(flips, "regulatory_flips.csv")
 # These are the "narrative miRNAs" — discussed in the dissertation.

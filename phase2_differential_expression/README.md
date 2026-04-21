@@ -9,19 +9,19 @@ the optimal statistical framework for each platform type.
 
 | Dataset | Platform | Engine | Why |
 |---------|----------|--------|-----|
-| GSE202708 (Human miRNA) | small-RNA-seq | **edgeR** (glmLRT) | Count-based NB model; superior for sparse miRNA-seq libraries |
+| GSE202708 (Human miRNA) | small-RNA-seq | **edgeR** (glmLRT) | Superior for sparse miRNA-seq libraries |
 | GSE46266 (Rat miRNA) | Microarray (Agilent) | **limma** (eBayes) | Appropriate for normalized continuous array intensities |
 | GSE202518 (Human mRNA) | RNA-seq | **DESeq2** | Recommended for bulk RNA-seq; superior shrinkage estimation |
-| GSE46267 (Rat mRNA) | Microarray (Illumina) | **limma + illuminaRatv1.db** | Probe annotation via Bioconductor rat annotation package |
+| GSE46267 (Rat mRNA) | Microarray (Illumina) | **limma** | Probe annotation via Bioconductor rat annotation package |
 
 ## Significance Thresholds
 
 | Platform | P-value | FDR | |logFC| |
 |----------|---------|-----|---------|
-| RNA-seq / miRNA-seq | padj < 0.05 | Yes | > 1 |
-| Microarray | P.Value < 0.05 | Raw (n=3/group) | ≥ 1 |
+| RNA-seq / miRNA-seq | padj < [THRESHOLD_FDR] | Yes | > [THRESHOLD_LOGFC] |
+| Microarray | P.Value < [THRESHOLD_PVAL] | Raw | ≥ [THRESHOLD_LOGFC] |
 
-> **Note:** Microarray datasets (rat model) use raw p-values due to small sample size (n=3 per group), where FDR correction is overly conservative.
+> **Note:** Microarray datasets (rat model) use raw p-values due to small sample size per group, where FDR correction is overly conservative.
 
 ## Disease Model (4 Contrasts)
 

@@ -9,7 +9,7 @@
 #
 #   TOOL PIPELINE (executed in sequence):
 #     1. TargetScan  → conserved seed-match prediction (position 2–8)
-#     2. RNAhybrid   → MFE of miRNA:3'UTR duplex (threshold: ≤ −20 kcal/mol)
+#     2. RNAhybrid   → MFE of miRNA:3'UTR duplex (threshold: ≤ [THRESHOLD_MFE])
 #     3. RNAplfold   → local 3'UTR accessibility (unpaired probability window)
 #     4. RNAcofold   → co-folding free energy (duplex + flanking context)
 #

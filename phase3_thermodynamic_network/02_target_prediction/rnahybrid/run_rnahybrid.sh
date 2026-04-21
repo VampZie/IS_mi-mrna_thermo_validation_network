@@ -8,9 +8,9 @@
 #   RNAhybrid. Operates on pre-extracted 3'UTR FASTA sequences per contrast
 #   group. Output is parsed and filtered by energy threshold.
 #
-#   ENERGY THRESHOLD: MFE ≤ −20 kcal/mol
+#   ENERGY THRESHOLD: MFE ≤ [THRESHOLD_MFE]
 #   Rationale: empirically calibrated cutoff for stroke-context miRNA binding.
-#   Values above -20 are considered thermodynamically insufficient for
+#   Values above [THRESHOLD_MFE] are considered thermodynamically insufficient for
 #   stable repression complex formation.
 #
 # PIPELINE:
@@ -65,8 +65,8 @@ cd "$OUTPUT_DIR"
 # -----------------------------------------------------------------------------
 # SKELETON: RNAhybrid parameters (not shown for IP protection):
 #   -s 3utr_human      → target site model
-#   -e -20             → energy cutoff filter
-#   -p 0.05            → p-value threshold
+#   -e [THRESHOLD_MFE] → energy cutoff filter
+#   -p [THRESHOLD_PVAL] → p-value threshold
 #   -m 50000           → max target length
 #   Runs all miRNA × all 3'UTR pairs in FASTA files
 
@@ -85,7 +85,7 @@ echo "[2/3] Parsing RNAhybrid output..."
 # -----------------------------------------------------------------------------
 # STEP 3 — Energy filter (Python)
 # -----------------------------------------------------------------------------
-echo "[3/3] Applying MFE threshold (≤ −20 kcal/mol)..."
+echo "[3/3] Applying MFE threshold (≤ [THRESHOLD_MFE] kcal/mol)..."
 
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate py
@@ -94,6 +94,6 @@ python filter_by_energy.py "$GROUP"
 
 echo "----------------------------------------"
 echo "RNAhybrid complete for: $GROUP"
-echo "Outputs: ${GROUP}_RNAhybrid_MFE_leq_-20.csv"
-echo "         ${GROUP}_best_sites_MFE_leq_-20.csv"
+echo "Outputs: ${GROUP}_RNAhybrid_MFE_leq_[THRESHOLD_MFE].csv"
+echo "         ${GROUP}_best_sites_MFE_leq_[THRESHOLD_MFE].csv"
 echo "----------------------------------------"

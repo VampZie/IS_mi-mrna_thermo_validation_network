@@ -20,8 +20,8 @@
 #   Must be run from within: target_prediction/<GROUP>/energy/rnahybrid/
 #
 # INPUT : {GROUP}_RNAhybrid_parsed_result.csv
-# OUTPUT: {GROUP}_RNAhybrid_MFE_leq_-20.csv
-#         {GROUP}_best_sites_MFE_leq_-20.csv
+# OUTPUT: {GROUP}_RNAhybrid_MFE_filtered.csv
+#         {GROUP}_best_sites_MFE_filtered.csv
 # =============================================================================
 
 import sys
@@ -38,10 +38,10 @@ GROUP = sys.argv[1]
 # CONFIGURATION
 # -----------------------------------------------------------------------------
 input_file     = f"{GROUP}_RNAhybrid_parsed_result.csv"
-filtered_output = f"{GROUP}_RNAhybrid_MFE_leq_-20.csv"
-best_output    = f"{GROUP}_best_sites_MFE_leq_-20.csv"
+filtered_output = f"{GROUP}_RNAhybrid_MFE_filtered.csv"
+best_output    = f"{GROUP}_best_sites_MFE_filtered.csv"
 
-ENERGY_THRESHOLD = -20.0   # kcal/mol — thermodynamic stability criterion
+ENERGY_THRESHOLD = float(os.getenv("THRESHOLD_MFE", -99.9))   # kcal/mol (REDACTED)
 
 print("-----------------------------------------------------")
 print(f"GROUP          : {GROUP}")

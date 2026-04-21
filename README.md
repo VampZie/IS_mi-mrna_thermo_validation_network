@@ -24,7 +24,7 @@ Using **dual-species** (human + rat) and **dual-platform** (RNA-seq + microarray
 | Feature | Detail |
 |---------|--------|
 | **Multi-engine DE** | edgeR (miRNA-seq) · DESeq2 (RNA-seq) · limma (microarray) |
-| **4-tool thermodynamics** | TargetScan · RNAhybrid (MFE ≤ −20) · RNAplfold · RNAcofold |
+| **4-tool thermodynamics** | TargetScan · RNAhybrid (MFE ≤ [THRESHOLD_MFE]) · RNAplfold · RNAcofold |
 | **Cross-species validation** | Human (hsa) + Rat (rno) parallel networks |
 | **Network rigidity metric** | Degree rewiring quantification across progression states |
 | **Regulatory flip detection** | miRNAs switching binding affinity class across states |
@@ -111,7 +111,7 @@ Rscript ../phase2_differential_expression/human_mirna/02_de_edgeR.R
 | Phase | Input | Output | Key Tools |
 |-------|-------|--------|-----------|
 | **Phase 1** | SRA accessions | Count matrices (CSV) | prefetch, fastp, STAR, featureCounts, miRDeep2 |
-| **Phase 2** | Count matrices | DE lists (UP/DOWN per contrast) | edgeR, DESeq2, limma |
+| **Phase 2** | Count matrices | DE lists (quantitatively filtered) | edgeR, DESeq2, limma |
 | **Phase 3** | DE lists | Validated networks + figures | RNAhybrid, RNAplfold, RNAcofold, igraph, ggplot2 |
 
 ---

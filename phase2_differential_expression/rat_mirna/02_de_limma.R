@@ -20,7 +20,7 @@
 #     Subacute_vs_Acute    → phase transition signature
 #     Stroke_vs_Control    → composite stroke (Models A+B combined)
 #
-#   THRESHOLDS: adj.P.Val < 0.05  AND  |logFC| > 1
+#   THRESHOLDS: adj.P.Val < [THRESHOLD_FDR]  AND  |logFC| > [THRESHOLD_LOGFC]
 #
 # INPUT : miRNA_microarray_expression_normalized.csv, sample_info.csv
 # OUTPUT: Rat_{contrast}_sig.csv, _UP.csv, _DOWN.csv
@@ -111,7 +111,7 @@ cat("[SKELETON] 2-group stroke model fit omitted.\n\n")
 #            adjust.method = "BH", sort.by = "P") %>%
 #     rownames_to_column("miRNA")
 # }
-# Significance: adj.P.Val < 0.05 & |logFC| > 1
+# Significance: adj.P.Val < [THRESHOLD_FDR] & |logFC| > [THRESHOLD_LOGFC]
 
 # -----------------------------------------------------------------------------
 # STEP 7: Export results

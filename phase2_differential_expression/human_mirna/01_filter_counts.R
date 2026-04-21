@@ -4,12 +4,11 @@
 # Dataset: GSE202708 — Human miRNA-seq, Ischemic Stroke Progression
 # =============================================================================
 # PURPOSE:
-#   Applies a two-stage strict filtering protocol on the raw miRNA count matrix
-#   to remove lowly-expressed, non-reproducible features prior to differential
+#   Applies a two-stage differential
 #   expression analysis.
 #
-#   Stage 1 — Raw count filter : removes miRNAs with < 10 counts in < 4 samples
-#   Stage 2 — CPM filter       : removes miRNAs with CPM < 1 in < 6 samples
+#   Stage 1 — Raw count filter : removes miRNAs with < [MIN_COUNTS] in < [MIN_SAMPLES]
+#   Stage 2 — CPM filter       : removes miRNAs with CPM < [MIN_CPM] in < [MIN_SAMPLES]
 #
 #   Rationale: miRNA-seq libraries have higher sparsity than mRNA-seq.
 #   Dual-filter improves specificity of edgeR dispersion estimates.
@@ -49,8 +48,8 @@ dge <- DGEList(counts = expr_raw)
 # -----------------------------------------------------------------------------
 # STEP 4: Stage 1 — Raw count threshold
 # -----------------------------------------------------------------------------
-# SKELETON: keep_counts <- rowSums(dge$counts >= 10) >= 4
-# Threshold: ≥10 raw counts in ≥4 samples (25% of library)
+# SKELETON: keep_counts <- rowSums(dge$counts >= [THRESHOLD_COUNT]) >= [THRESHOLD_SAMPLES]
+# Threshold: ≥[THRESHOLD_COUNT] raw counts in ≥[THRESHOLD_SAMPLES] samples
 keep_counts <- rep(TRUE, nrow(dge))  # SKELETON placeholder
 dge <- dge[keep_counts, , keep.lib.sizes = FALSE]
 cat("After count filter:", nrow(dge), "miRNAs\n")
@@ -58,8 +57,8 @@ cat("After count filter:", nrow(dge), "miRNAs\n")
 # -----------------------------------------------------------------------------
 # STEP 5: Stage 2 — CPM detectability threshold
 # -----------------------------------------------------------------------------
-# SKELETON: keep_cpm <- rowSums(cpm(dge) > 1) >= 6
-# Threshold: CPM > 1 in ≥6 samples (≥37.5% of library)
+# SKELETON: keep_cpm <- rowSums(cpm(dge) > [THRESHOLD_CPM]) >= [THRESHOLD_SAMPLES]
+# Threshold: CPM > [THRESHOLD_CPM] in ≥[THRESHOLD_SAMPLES] samples
 cpm_mat   <- cpm(dge)
 keep_cpm  <- rep(TRUE, nrow(dge))   # SKELETON placeholder
 dge <- dge[keep_cpm, , keep.lib.sizes = FALSE]

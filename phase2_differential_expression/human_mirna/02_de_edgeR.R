@@ -17,7 +17,7 @@
 #     4. Stroke    vs Control   → composite stroke signature (avg moderate+severe)
 #
 #   THRESHOLDS:
-#     FDR < 0.05  AND  |logFC| > 1
+#     FDR < [THRESHOLD_FDR]  AND  |logFC| > [THRESHOLD_LOGFC]
 #
 # INPUT : miRNA_count_matrix_filtered.csv, sample_info.csv
 # OUTPUT: DE_{contrast}_ALL.csv, _SIG.csv, _UP.csv, _DOWN.csv
@@ -71,10 +71,10 @@ run_contrast <- function(fit, contrast_vector, contrast_name) {
   # lrt <- glmLRT(fit, contrast = contrast_vector)
   # res <- topTags(lrt, n = Inf)$table
 
-  # Significance filter: FDR < 0.05, |logFC| > 1
-  # res_sig  <- subset(res, FDR < 0.05 & abs(logFC) > 1)
-  # res_up   <- subset(res_sig, logFC > 1)
-  # res_down <- subset(res_sig, logFC < -1)
+  # Significance filter: FDR < [THRESHOLD_FDR], |logFC| > [THRESHOLD_LOGFC]
+  # res_sig  <- subset(res, FDR < [THRESHOLD_FDR] & abs(logFC) > [THRESHOLD_LOGFC])
+  # res_up   <- subset(res_sig, logFC > [THRESHOLD_LOGFC])
+  # res_down <- subset(res_sig, logFC < -[THRESHOLD_LOGFC])
 
   # SKELETON: write.csv() calls omitted for _ALL, _SIG, _UP, _DOWN variants.
   message(paste("[SKELETON] Contrast:", contrast_name, "— outputs would be written here."))
