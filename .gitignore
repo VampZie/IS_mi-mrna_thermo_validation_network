@@ -1,0 +1,74 @@
+# ─────────────────────────────────────────────────────────────
+# stroke-mirna-suite | .gitignore
+# ─────────────────────────────────────────────────────────────
+
+# ── Raw sequencing data (NEVER push to GitHub) ─────────────
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.sra
+*.bam
+*.bai
+*.sam
+
+# ── Large reference files ──────────────────────────────────
+*.gtf
+*.fa
+*.fasta
+*.genome
+*.gff
+*.gff3
+*.2bit
+reference/
+
+# ── Unpublished DE results (protect IP) ───────────────────
+# Comment these out if you want to push example results
+phase2_differential_expression/**/*_ALL.csv
+phase2_differential_expression/**/*_SIG.csv
+phase2_differential_expression/**/*deseq2_*.csv
+mrna/
+mirna/
+
+# ── Large thermodynamic outputs ────────────────────────────
+*.lunp
+*_rnacofold_raw.txt
+*_RNAhybrid_parsed_result.csv
+phase3_thermodynamic_network/02_target_prediction/**/*.csv
+
+# ── Network result data (keep only plots) ──────────────────
+network_results/**/*.csv
+
+# ── Log files ─────────────────────────────────────────────
+*.log
+logs/
+nohup.out
+
+# ── R artifacts ───────────────────────────────────────────
+.Rhistory
+.RData
+.Rproj.user/
+Rplots.pdf
+
+# ── Python artifacts ──────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+env/
+
+# ── OS artifacts ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ── Scratch/temp ──────────────────────────────────────────
+scratch/
+tmp/
+*.tmp
+
+# ── Conda environment (declare in environment.yml instead) ─
+envs/

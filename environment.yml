@@ -1,0 +1,51 @@
+name: stroke-mirna-suite
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  # ── Base ──────────────────────────────────────────────────
+  - python=3.9
+  - r-base=4.2
+  - pandas
+  - numpy
+  - biopython
+
+  # ── Phase 1: Read processing ──────────────────────────────
+  - sra-tools          # prefetch, fasterq-dump
+  - fastp              # paired-end adapter trimming (mRNA)
+  - cutadapt           # small-RNA adapter trimming (miRNA)
+  - star=2.7           # splice-aware genome aligner
+  - bowtie             # short-read aligner (miRDeep2)
+  - subread            # featureCounts
+  - mirdeep2           # miRNA quantification
+  - pigz               # parallel gzip
+
+  # ── Phase 2: Differential expression ─────────────────────
+  - bioconductor-deseq2
+  - bioconductor-edger
+  - bioconductor-limma
+  - bioconductor-illuminaratv1.db
+  - r-tidyverse
+  - r-rcolorbrewer
+  - r-ggrepel
+
+  # ── Phase 3: Thermodynamic tools ─────────────────────────
+  - viennarna           # RNAhybrid, RNAplfold, RNAcofold
+  # Note: TargetScan backbone downloaded manually from targetscan.org
+
+  # ── Phase 3: Network analysis ────────────────────────────
+  - bioconductor-clusterprofiler
+  - bioconductor-org.hs.eg.db
+  - bioconductor-org.rn.eg.db
+  - bioconductor-enrichplot
+  - bioconductor-annotationdbi
+  - r-igraph
+  - r-ggalluvial
+  - r-upsetr
+  - r-fmsb              # radar/spider plots
+  - r-pheatmap
+  - r-viridis
+  - r-ggpubr
+  - r-rstatix
