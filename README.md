@@ -1,6 +1,6 @@
-# Stroke-miRNA-Suite
+# IS_mi-mrna_thermo_validation_network
 
-> **A cross-species, multi-phase computational pipeline for thermodynamically validated miRNA–mRNA regulatory network analysis in ischemic stroke progression.**
+> **Validation of known miRNA–mRNA regulatory states in Ischemic Stroke via thermodynamic stability, seed duplex formation, and structural accessibility filtering — with co-expression network dynamics analysis.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20HPC-lightgrey)]()
@@ -34,7 +34,7 @@ Using **dual-species** (human + rat) and **dual-platform** (RNA-seq + microarray
 ## Pipeline Architecture
 
 ```
-stroke-mirna-suite/
+IS_mi-mrna_thermo_validation_network/
 │
 ├── phase1_data_acquisition/          ← Raw data ingest (FASTQ → count matrices)
 │   ├── human_mrna/                   ← SRA → STAR → featureCounts → CSV
@@ -90,8 +90,8 @@ conda env create -f environment.yml
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/stroke-mirna-suite.git
-cd stroke-mirna-suite
+git clone https://github.com/YOUR_USERNAME/IS_mi-mrna_thermo_validation_network.git
+cd IS_mi-mrna_thermo_validation_network
 
 # Run full pipeline (requires HPC + datasets)
 bash orchestration/run_all_phases.sh
@@ -118,9 +118,9 @@ Rscript ../phase2_differential_expression/human_mirna/02_de_edgeR.R
 
 ## Reference
 
-This pipeline was developed as part of a doctoral dissertation on multi-omics characterization of ischemic stroke regulatory dynamics. The thermodynamic validation framework and cross-species network rigidity analysis represent novel methodological contributions to the field.
+This pipeline was developed as part of a doctoral dissertation on multi-omics characterization of ischemic stroke regulatory dynamics. The 4-tool thermodynamic validation framework and cross-species network rigidity quantification represent novel methodological contributions to computational neuroscience.
 
-> *Thermodynamically validated miRNA–mRNA network analysis reveals progressive regulatory entropy loss during ischemic stroke.*
+> *Thermodynamic stability, seed duplex formation, and structural accessibility filtering reveal progressive regulatory entropy loss in ischemic stroke miRNA–mRNA networks.*
 
 ---
 

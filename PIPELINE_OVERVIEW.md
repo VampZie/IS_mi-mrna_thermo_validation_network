@@ -1,4 +1,4 @@
-# Stroke-miRNA-Suite | Full Pipeline Overview
+# IS_mi-mrna_thermo_validation_network | Full Pipeline Overview
 
 > Scientific narrative connecting Phase 1 → Phase 2 → Phase 3
 
