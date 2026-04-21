@@ -2,7 +2,7 @@
 
 > **Validation of known miRNA–mRNA regulatory states in Ischemic Stroke via thermodynamic stability, seed duplex formation, and structural accessibility filtering — with co-expression network dynamics analysis.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20HPC-lightgrey)]()
 [![R version](https://img.shields.io/badge/R-%3E%3D4.2-276DC3?logo=r)]()
 [![Python](https://img.shields.io/badge/Python-%3E%3D3.8-3776AB?logo=python)]()
@@ -24,7 +24,7 @@ Using **dual-species** (human + rat) and **dual-platform** (RNA-seq + microarray
 | Feature | Detail |
 |---------|--------|
 | **Multi-engine DE** | edgeR (miRNA-seq) · DESeq2 (RNA-seq) · limma (microarray) |
-| **4-tool thermodynamics** | TargetScan · RNAhybrid (MFE ≤ [THRESHOLD_MFE]) · RNAplfold · RNAcofold |
+| **3-tool thermodynamics** |· RNAhybrid (MFE ≤ [THRESHOLD_MFE]) · RNAplfold · RNAcofold |
 | **Cross-species validation** | Human (hsa) + Rat (rno) parallel networks |
 | **Network rigidity metric** | Degree rewiring quantification across progression states |
 | **Regulatory flip detection** | miRNAs switching binding affinity class across states |
@@ -64,10 +64,10 @@ IS_mi-mrna_thermo_validation_network/
 
 | Dataset | Species | Platform | Groups | GEO |
 |---------|---------|----------|--------|-----|
-| GSE202708 | Human | small-RNA-seq (miRNA) | Control · Moderate · Severe | [Link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE202708) |
-| GSE202518 | Human | RNA-seq (mRNA) | Control · Moderate · Severe | [Link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE202518) |
-| GSE46266  | Rat   | Microarray (miRNA) | Control · Acute · Subacute | [Link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE46266) |
-| GSE46267  | Rat   | Microarray (mRNA)  | Control · Acute · Subacute | [Link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE46267) |
+| GSEXXXXXX | Human | small-RNA-seq (miRNA) | Control · Moderate · Severe |
+| GSEXXXXX | Human | RNA-seq (mRNA) | Control · Moderate · Severe |
+| GSEXXXXX  | Rat   | Microarray (miRNA) | Control · Acute · Subacute |
+| GSEXXXXX  | Rat   | Microarray (mRNA)  | Control · Acute · Subacute |
 
 ---
 
@@ -86,26 +86,6 @@ conda env create -f environment.yml
 
 ---
 
-## Quick Start
-
-```bash
-# Clone repository
-git clone https://github.com/YOUR_USERNAME/IS_mi-mrna_thermo_validation_network.git
-cd IS_mi-mrna_thermo_validation_network
-
-# Run full pipeline (requires HPC + datasets)
-bash orchestration/run_all_phases.sh
-
-# Run specific phase only
-bash orchestration/run_all_phases.sh --phase2
-
-# Demo with synthetic data
-cd examples/
-Rscript ../phase2_differential_expression/human_mirna/02_de_edgeR.R
-```
-
----
-
 ## Phase Summaries
 
 | Phase | Input | Output | Key Tools |
@@ -118,7 +98,7 @@ Rscript ../phase2_differential_expression/human_mirna/02_de_edgeR.R
 
 ## Reference
 
-This pipeline was developed as part of a doctoral dissertation on multi-omics characterization of ischemic stroke regulatory dynamics. The 4-tool thermodynamic validation framework and cross-species network rigidity quantification represent novel methodological contributions to computational neuroscience.
+This pipeline was developed as part of a Master's dissertation on multi-omics characterization of ischemic stroke regulatory dynamics. The 3-tool thermodynamic validation framework and cross-species network rigidity quantification represent novel methodological contributions to computational neuroscience.
 
 > *Thermodynamic stability, seed duplex formation, and structural accessibility filtering reveal progressive regulatory entropy loss in ischemic stroke miRNA–mRNA networks.*
 
